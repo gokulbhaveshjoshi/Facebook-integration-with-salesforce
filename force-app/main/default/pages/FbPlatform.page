@@ -1,0 +1,234 @@
+<apex:page >
+    <script>
+        var pages = 0;
+        var pageName = [];
+        var pageId = [];
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '1297763477407304',
+                xfbml: true,
+                version: 'v12.0'
+            });
+        };
+
+        <script>
+    
+    var pageId;
+    var pageName;
+    
+    var pages = 0;
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '4911041635593455',
+            xfbml      : true,
+            version    : 'v12.0'
+        });
+    };
+    
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    
+    function subscribeApp(page_id, page_access_token) {
+        
+        console.log('Subscribing page to app! ' + page_id);
+        FB.api(
+            '/' + page_id + '/subscribed_apps',
+            'post',
+            {access_token: page_access_token, subscribed_fields: ['leadgen']},
+            function(response) {
+                console.log('Successfully subscribed page', response);
+                FB.api(
+                    '/' + page_id,
+                    'get',
+                    {access_token: page_access_token},
+                    function(response) {
+                        pageId = response.id; 
+                        pageName = response.name;
+                        //console.log('Page Id from '+pageId);
+                        // pageIdList.push(response.id);
+                        //pageNameList.push(response.name);
+                        setIdandName(pageId,pageName);
+                        
+                    }
+                );
+                
+            }
+        );
+        
+        
+    };
+    
+    function SubscribedApp() {
+        //var checked_page  = document.querySelector("#pageCheckBox:checked");
+        var resultArray;
+        var checked_page = [];
+        for (var i = 0; i < pages.length; i++) {
+            let id = 'pageCheckBox' + i;
+            if (document.querySelector('#' + id + ':checked')) {
+                checked_page.push(document.querySelector('#' + id + ':checked'));
+            }
+        }
+        console.log('checked', checked_page);
+        
+        for (var i = 0; i < checked_page.length; i++) {
+            console.log('button clicked', 'Subscribed App');
+            console.log(checked_page[i].value)
+            const pageDetailArray = (checked_page[i].value).split();
+            subscribeApp( pageDetailArray[0], pageDetailArray[1]);
+            console.log(checked_page[i].name); 
+        }
+        
+        //document.getElementById('subscribedPageList').style.visibility = 'visible';
+        getSubscribedFields();
+        
+        
+        
+        //console.log(resultArray[0]);
+        /*  var pageIdsList = resultArray[0];
+        console.log(pageIdsList);
+        var pageNamesList = resultArray[1];
+        console.log(pageNamesList);
+        console.log(typeof pageIdsList);
+ 		console.log(Array.isArray(pageIdsList));*/
+        
+    };
+    
+    function getSubscribedFields(){
+        // convert into substring and split
+        var listPagesSubscribed = '{!SubscribedPages}';
+        console.log('Json', typeof(listPagesSubscribed));
+        console.log('getting data from apex',listPagesSubscribed);
+        var splitList123 = listPagesSubscribed.substring(1,listPagesSubscribed.length - 1);
+        splitList123 =  splitList123.split(', ');
+        console.log('bhavesh joshi', splitList123);
+        
+        
+       	const keys = Object.values(splitList123);
+        const mapValues = new Map(Object.entries(splitList123));
+        console.log('values of keys', mapValues);
+        var subPageId = [];
+        var subPageName = [];
+        let size = mapValues.size;
+        console.log(typeof(mapValues), size);
+        var ab = 0;
+        while(ab<5){
+            console.log(
+                'bhavesh'
+            );
+            ab++;
+        }
+         <script>
+    
+    var pageId;
+    var pageName;
+    
+    var pages = 0;
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '4911041635593455',
+            xfbml      : true,
+            version    : 'v12.0'
+        });
+    };
+    
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0 <script>
+    
+    var pageId;
+    var pageName;
+    
+    var pages = 0;
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId      : '4911041635593455',
+            xfbml      : true,
+            version    : 'v12.0'
+        });
+    };
+    
+    (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'f];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'f
+        /*for(var i = 0; i<size; i++){
+            if(i%2==0){
+                subPageId.push(mapValues.get(i));
+            }
+            else{
+                subPageName.push(mapValues.get(i));
+            }
+        }*/
+        
+        console.log('Page id', subPageId);
+        console.log('Page name', subPageName);
+                    
+    };
+    
+    // Only works after `FB.init` is called
+    function myFacebookLogin() {
+        
+        
+        
+        FB.login(function(response){
+            console.log('Successfully logged in', response);
+            FB.api('/me/accounts', function(response) {
+                console.log('Successfully retrieved pages', response);
+                pages = response.data;
+                var ul = document.getElementById('list');
+                /*for (var i = 0, len = pages.length; i < len; i++) {
+                    var page = pages[i];
+                    var li = document.createElement('div');
+                    var a = document.createElement('input');
+                    a.type = "checkbox";
+                    a.name = page.name;
+                    a.id = 'pageCheckBox'+i;
+                    //a.onclick = subscribeApp.bind(this, page.id, page.access_token);
+                    a.value = page.id+' '+page.access_token;
+                    li.appendChild(a);
+                    var label = document.createElement('label');
+                    label.innerHTML = page.name;
+                    li.appendChild(label);
+                    ul.appendChild(li);
+                    document.getElementById('Subscribed').style.visibility = 'visible';
+                    document.getElementById('fbLogin').style.visibility = 'hidden';
+                }*/
+            });
+        });
+        
+    }
+    
+    </script>
+    
+    <button id="fbLogin" style="color:#3b5998;font-size:125%;font-weight:bold;" onclick="myFacebookLogin()">Login with Facebook</button>
+    
+    <div id="list"></div>
+    
+    <button id="Subscribed" style="color:#3b5998;font-size:125%;font-weight:bold;" onclick="SubscribedApp()">Subscribe App</button>
+    
+    
+    <apex:form >
+        <apex:actionFunction name="setIdandName" action="{!saveAccountDetail}"  reRender="abc">
+            <apex:param id="pageId" name="pageId" value="" assignTo="{!pageId}"/>
+            <apex:param id="pageName" name="pageName" value="" assignTo="{!pageName}"/>
+        </apex:actionFunction>
+    </apex:form> 
+    
+    <div id='subscribedPageList'>
+        
+    </div>
+    
+    
+</apex:page>
